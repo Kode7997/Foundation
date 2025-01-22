@@ -23,5 +23,11 @@ int main() {
         printf("%c",t[i]);
     }
 
+    if(strcmp(d, s) == 0){
+        printf("\n string are equal\n");
+    }else{
+        printf("strings are not equal\n");
+    }
+
     return 0;
 }

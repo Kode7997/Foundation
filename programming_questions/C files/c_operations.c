@@ -31,10 +31,11 @@ typedef struct arr_ele ae; // this is the instance of the structure
 
 
 struct sizeofstruct {
-    int *arr[10]; // 8 * 10 = 80 bytes
+    int *arr[10]; // 8 * 10 = 80 bytes // 64bit
     char c;     // allocates 1 byte + 7 bytes (concept of padding -  for better CPU performance; limit the number of memory access)
     char *ch;   // 8 bytes
     float f;    // 4 bytes + 4 bytes(bcz of 64bit machine, allocates nearest boundary which is 8 bytes)
+    double d;   // 8 bytes
 };
 
 /*
@@ -90,20 +91,25 @@ void arr_malloc() {
 
     //free memory
     free(arr);
-    arr = NULL; // dangling pointer - It's pointer that tries to acces the memory that is freed or unallocated 
+    //arr = NULL; // dangling pointer - It's pointer that tries to acces the memory that is freed or unallocated 
 }
 
 
 // calloc
 void mem_calloc(){
     // 2-d array
-    int **arr = (int **)calloc(5 , sizeof(int));
+    int **arr = (int **)calloc(5 , sizeof(int *));
+    if (!arr){
+        printf("calloc mem not allocated\n");
+        return;
+    }
     for(int i=0;i<5;i++){
         // alloc mem for column for each row
         arr[i] = (int *)calloc(5, sizeof(int));
     }
 
     printf("size of 2-d array %lu\n",sizeof(arr));
+    
     // free memory
     for(int i=0;i<5;i++){
         free(arr[i]);
@@ -117,12 +123,14 @@ void callback_func(){
     printf("this func is called using callback mechanism\n");
 }
 
-void caller_of_callback(void (*ptr)()){
-    (*ptr)(); // call callback function
+void caller_of_callback(void (*callback)()){
+    printf("caller of callback\n");
+    (*callback)(); // call callback function
 }
 
 void assign_and_callback(){               //callback function implementaton
-    caller_of_callback(&callback_func);
+    printf("assign callback\n");
+    caller_of_callback(callback_func);
 }
 
 void reverse_string(char str[]){
@@ -249,7 +257,7 @@ int main() {
 
     arr_malloc(); // dynamic memory allocation is in Heap memory
     mem_calloc(); // 2-d array // memory allocation happens in Heap
-
+    
     assign_and_callback(); //call back function
 
     sizeof_str_and_union(); // calc sizeof structure
@@ -257,5 +265,6 @@ int main() {
     string_operations(); //strcpy, strcmp, strcat
     
     dot_and_arrow_oper();
+    
     return 0;
 }
