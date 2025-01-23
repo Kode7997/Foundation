@@ -31,7 +31,7 @@ class Game{
         }
 };
 
-int Game::totalPrice = 0; 
+int Game::totalPrice = 0;
 
 int main(){
 

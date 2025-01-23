@@ -29,9 +29,8 @@ void server(){
     address.sin_port = htons(PORT)    // convert from short interger to host byte order
 
     // after bind, listen to the incomming req
-    if(listen(server_fd, 3)<0){
+    if(listen(server_fd, 3)<0) {
         printf("failed to listen\n"); //passivlt listen to the port
-
     }
 
     if (new_socket = accept(server_fd, (struct sockaddr_in *)&address, strlen(address)) < 0){
