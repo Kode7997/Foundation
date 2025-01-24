@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main(){
+int main() {
 
     int x =65;
     double y = (double)x; // still works in cpp like in c
@@ -39,9 +39,6 @@ int main(){
 
     cout << "reinterpret cast "<< *s << endl;
 
-
    return 0;
-
-
 
 }

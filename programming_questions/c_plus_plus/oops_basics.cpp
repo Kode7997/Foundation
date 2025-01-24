@@ -72,7 +72,7 @@ class MyClass3 {
             return this->prv_var;
         }
 
-        virtual void display(){                     //virtual keyword for ppolymorphism
+        virtual void display(){                     //virtual keyword for polymorphism
             cout<<"parent method invoked"<<endl;
         }
 

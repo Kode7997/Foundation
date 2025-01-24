@@ -13,7 +13,7 @@ using namespace std;
 void vector_func(){
     
     vector<string> cars = {"Volvo", "BMW", "Ford", "Mazda"};
-    
+
     // vector methods
     int len = cars.size();
     string at_0 = cars.at(0);
@@ -85,7 +85,10 @@ void list_func() {
     for(it=lst.begin(); it != lst.end(); it++) {
         cout<< *it<< endl;
     }
-
+    
+    advance(it, 2); //advance iterator by 2 elements
+    lst.erase(it); // then erase
+    // lst.clear(); // clear entire list
 
     // following code throws error. list doesn't support random access
     // for(int i=0;i < lst.size(); i++) {
@@ -173,8 +176,6 @@ void set_func(){
     Cannot be accessed by index numbers, because the order is based on sorting and not indexing.
     */
 
- 
-
     set<int> s = {6,5,3,2,1,0};
     s.insert(100);
 
@@ -187,10 +188,8 @@ void set_func(){
         cout << i << " ";
     }
 
-
     cout << s.empty() << endl;
     return;
-
 
 }   
 
@@ -215,7 +214,6 @@ void map_func(){
 }
 
 
-
 int main() {
     vector<string> varr = {"keshav"};
     // vector_func();
@@ -229,7 +227,7 @@ int main() {
 
     //queue_func();
 
-    // dequeue_func();
+    //dequeue_func();
 
     // set_func();
     map_func();
