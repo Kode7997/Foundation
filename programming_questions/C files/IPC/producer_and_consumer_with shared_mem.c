@@ -11,7 +11,7 @@ BETWEEN PROCESSES.
 
 #define SIZE 1024
 
-void producer(){
+void producer() {
 //write to the shared memory
 void *shm_ptr;
 int shm_fd;

@@ -33,13 +33,13 @@ void anotherExample(){
 
 int main(){
 
-    ofstream myFile("random_file.txt");
+    fstream myFile("random_file.txt");
 
     myFile << "add text to the random file \n add another line to the text file";
 
     myFile.close();
     
-    ifstream readFile("random_file.txt");
+    fstream readFile("random_file.txt");
     string txt;
 
     while (getline(readFile, txt))

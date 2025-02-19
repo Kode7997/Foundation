@@ -14,6 +14,6 @@ int main(){
 
     printf("%ld\n",(&arr[1]-&arr[0]));
 
-
+    
     return 0;
 }

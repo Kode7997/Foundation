@@ -11,7 +11,7 @@ struct dll
 
 struct dll *head = NULL;
 
-void insertNode(struct dll* node, int data){
+void insertNode(struct dll* node, int data) {
 
     struct dll *newNode = (struct dll*)malloc(sizeof(struct dll));
     newNode->data = data;

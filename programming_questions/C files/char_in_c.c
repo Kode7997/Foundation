@@ -1,5 +1,11 @@
 #include<stdio.h>
 
+struct padding{
+    char c; // 1 byte
+    int a;  // 4 byte
+            // +3 bytes gets added
+};
+
 int main(){
     // There is difference between C and C++ when dealing with the char. In C, characters are promoted to int and 
     // int can be promoted to char but in C++ it cannot be done.
@@ -16,6 +22,10 @@ int main(){
     if (b == let){   //char and int are compared
         printf("Yes a and let are equal\n");
     }
+
+    struct padding pad_size;
+
+    printf("size of struct with padding %lu\n",sizeof(pad_size));
 
     return 0;
 }

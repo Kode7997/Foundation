@@ -39,7 +39,7 @@ int main(){
     }
 
 
-    while(getline(cin, line, ',')){
+    while(getline(cin, line, '.')){
         cout << "line: "<<line<<endl;
         stringstream ss(line);    // add something to stringstream
         string word;
@@ -51,9 +51,9 @@ int main(){
 
             for(char c: word) {
                 //count the freq of chars
-                if (freq.find(c) != freq.end()){
+                if (freq.find(c) != freq.end()) {
                     freq[c] = freq[c] + 1;
-                }else{
+                } else {
                     freq[c] = 1;
                 }
 

@@ -1,9 +1,8 @@
 /*
 key, value
 To handle collision = linkedlist
-insert()
 
-this is how data is protected
+insert()
 */
 #include<stdlib.h>
 #include<string.h>
@@ -18,14 +17,14 @@ struct Entry {
     char *value;
     struct Entry *next;
 };
-                                                                                                                                         
+
 //create lock where data is updated
 // another lock to track multiple readers
 
-struct HashMap {
+struct HashMap{
     struct Entry *arr[SIZE];
-    pthread_mutex_t data_lock; //writer lock
-    pthread_mutex_t reader_lock; // reader lock
+    pthread_mutex_lock data_lock;
+    pthread_mutex_lock reader_lock;
     int readers;
 
 };
@@ -53,7 +52,9 @@ struct HashMap* create_hashtable() {
     
     struct HashMap *map = (struct HashMap*)malloc(sizeof(struct HashMap));
     for(int i =0;i<SIZE;i++){
-        map->arr[i] = NULL;
+        map->arr[i]->key = NULL;
+        map->arr[i]->value = NULL;
+        map->arr[i]->next = NULL;
     }
 
     pthread_mutex_init(&map->data_lock, NULL);
@@ -75,36 +76,33 @@ void insert(struct HashMap *map, char *key, char *value){
         map->arr[hash] = (struct Entry *)malloc(sizeof(struct Entry));
         map->arr[hash]->key = (char *)malloc(sizeof(strlen(key)+1));
         map->arr[hash]->value = (char *)malloc(sizeof(strlen(value)+1));
+
         strcpy(map->arr[hash]->key, key);
         strcpy(map->arr[hash]->value, value);
         map->arr[hash]->next = NULL;
-        printf("first entry\n");
-    } else {
-        printf("second entry\n");
+
+        return;
+    }
+    else {
         struct Entry *node = map->arr[hash];
         struct Entry *prev=node;
 
-        // while (node->next != NULL)
-        // {   
-        //     node = node->next;
-        // }
-        // prev->next = (struct Entry *)malloc(sizeof(struct Entry));
-        // prev->next->key = (char *)malloc(sizeof(strlen(key)+1));
-        // prev->next->value = (char *)malloc(sizeof(strlen(value)+1));
-        // strcpy(prev->next->key,  key);
-        // strcpy(prev->next->value, value);
-        // prev->next->next = NULL;
-        struct Entry *newnode = (struct Entry *)malloc(sizeof(struct Entry));
-        newnode->key = (char *)malloc(sizeof(strlen(key)+1));
-        newnode->value = (char *)malloc(sizeof(strlen(value)+1));
-        strcpy(newnode->key, key);
-        strcpy(newnode->value, value);
-        map->arr[hash] =  newnode;
-        newnode->next = node;
+        while (node != NULL)
+        {   
+            prev = node;
+            node = node->next;
+        }
+        printf("last node\n");
+        prev->next = (struct Entry *)malloc(sizeof(struct Entry));
+        prev->next->key = (char *)malloc(sizeof(strlen(key)+1));
+        prev->next->value = (char *)malloc(sizeof(strlen(value)+1));
+        strcpy(prev->next->key,  key);
+        strcpy(prev->next->value, value);
+        prev->next->next = NULL;
+        
     }
 
     pthread_mutex_unlock(&map->data_lock);
-    return;
 }
 
 
@@ -127,6 +125,7 @@ void delete(struct HashMap *map, char *key){
             printf("key mwtch\n");
             map->arr[hash] = node->next;
             free(node);
+            return;
     }else{
         printf("else");
         struct Entry *prev = node;
@@ -140,13 +139,12 @@ void delete(struct HashMap *map, char *key){
                 node->next = NULL;
                 free(node);
                 printf("delete successful\n");
+                return;
             }
         }
     }  
 
-    pthread_mutex_lock(&map->data_lock); // only after the unlock function return can be called. without unlocking, if 
-                                        // if next function call will be blocked if untill the lock is unlocked.
-    return;
+    pthread_mutex_lock(&map->data_lock);
 }
 
 char* read(struct HashMap *map, char *key){         // this allows the multiple users to read while there is no write.
@@ -154,7 +152,7 @@ char* read(struct HashMap *map, char *key){         // this allows the multiple 
     map->readers++;
 
     if(map->readers ==  1){
-        pthread_mutex_lock(&map->data_lock);      // lock the writer if reader count is 1
+        pthread_mutex_lock(&map->writer_lock);      // lock the writer if reader count is 1
     }
 
     pthread_mutex_unlock(&map->reader_lock);        // unlock the reader_lock once reader_count is updated
@@ -165,11 +163,10 @@ char* read(struct HashMap *map, char *key){         // this allows the multiple 
     pthread_mutex_lock(&map->reader_lock);          // protect the reader count while decrement using reader_lock
     map->readers--;
     if(map->readers ==  0){
-        pthread_mutex_unlock(&map->data_lock);    // if no reader then, unlock the writer lock
+        pthread_mutex_unlock(&map->writer_lock);    // if no reader then, unlock the writer lock
     }
     pthread_mutex_unlock(&map->reader_lock);        // unlock the reader_lock 
 
-    return "0";
 }
 
 
@@ -177,9 +174,13 @@ int main(){
 
     struct HashMap *map = create_hashtable();
     insert(map, "11.1.1.1","mac address");
-    insert(map, "1.1.1.11","mace address");
+    insert(map, "1.1.1.11","mac address");
     insert(map, "1.1.11.1","mac address");
     delete(map, "1.1.1.11");
-    // delete(map, "11.1.1.1");
+    delete(map, "11.1.1.1");
 
 }
+
+
+
+

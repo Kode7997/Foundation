@@ -2,3 +2,44 @@
 operator - (+ , -, /, *, dereference *, !, ~, ++, --)
 */
 
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+class Add {
+public:
+  int num1;
+  Add(int num1) { this->num1 = num1; }
+
+  Add(Add &obj) { num1 = obj.num1; }
+
+  int operator+(Add &obj) {
+    cout << "Add overloader is called\n";
+    return num1 + obj.num1 + 100;
+  }
+
+  bool operator==(Add &obj) {
+    cout << "is equal?\n";
+    return num1 == obj.num1;
+  }
+};
+
+int main() {
+
+  stringstream ss("Hello world!, I am a string stream");
+  string s;
+
+  while (ss >> s) {
+    cout << s << endl;
+  }
+
+  // operator overloading
+  Add a = Add(10);
+  Add b = Add(20);
+
+  cout << a + b;
+  cout << (a == b);
+
+  Add c = b;
+  cout << c.num1;
+}

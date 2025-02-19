@@ -1,6 +1,7 @@
 /*
 unidirectional graph
 */
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -20,12 +21,12 @@ struct Graph {
 
 /*
 1. create node
-2. create graph 
+2. create graph
 3. add Edge to the vertices
 4. display path from source to destination
 */
 
-struct Node* create_node(int vertex){
+struct Node* create_node(int vertex) {
 
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->vertex = vertex;
@@ -49,7 +50,7 @@ struct Graph* create_graph(int numberOfvertex){
 }
 
 
-void addEdge(struct Graph *graph, int src, int dest){
+void addEdge(struct Graph *graph, int src, int dest) {
 
     if (src >= graph->numberOfVertex || dest >= graph->numberOfVertex || src < 0 || dest < 0) 
     { 
@@ -57,7 +58,8 @@ void addEdge(struct Graph *graph, int src, int dest){
         return; 
     }
 
-    if (graph->arr[src].head == NULL){
+    if (graph->arr[src].head == NULL) {
+
         struct Node *newNode = create_node(src);
         struct Node *adjNode = create_node(dest);
 
@@ -87,9 +89,9 @@ void addEdge_helper( struct Graph *graph, int src, int dest) {
     addEdge(graph, dest, src);
 }
 
-void display_graph(struct Graph *graph){
+void display_graph(struct Graph *graph) {
 
-    for(int i=0; i<graph->numberOfVertex; i++){
+    for(int i=0; i<graph->numberOfVertex; i++) {
         struct Node *node = graph->arr[i].head;
         if (node != NULL){        
             while(node != NULL) {

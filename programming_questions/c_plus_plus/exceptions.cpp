@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int main(){
+int main() {
 
     int age = 1;
     try {               // try the logic
@@ -11,7 +11,7 @@ int main(){
         }else{
             throw(age); // used to handle custom errors. basically throws exception when error occurs
         }
-    }catch(int age){    // handle the error
+    } catch(int age) {    // handle the error
         cout <<"access denied bcz age "<<age<<" is not >=18"<<endl;
     }
 }

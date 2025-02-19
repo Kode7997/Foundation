@@ -12,7 +12,7 @@ class MyClass {     // class name
         int b;
         string word;
 
-        MyClass set_and_get_elemenets(){
+        MyClass set_and_get_elemenets() {
             MyClass obj2;
             obj2.a = 100;
             obj2.b = 200;
@@ -24,7 +24,7 @@ class MyClass {     // class name
 
 }; // semicolon is mandatory for class
 
-MyClass MyClass::outside_method(){
+MyClass MyClass::outside_method() {
     MyClass obj4;
     cout<<" method defined outside class using ::"<<endl;
 
@@ -32,14 +32,13 @@ MyClass MyClass::outside_method(){
 }
 
 
-
 class MyClass2 {
 
     public:
         int x;
         string y;
-        MyClass2(int x, string y) {        //constructor is always public and defined same name as class
-            this->x = x;                          // if same names are used as members, then issue of "name shadowing" occurs
+        MyClass2(int x, string y) {         // constructor is always public and defined same name as class
+            this->x = x;                    // if same names are used as members, then issue of "name shadowing" occurs
                                             // in C++. therefore "this->" keyword is used to point to class members.
             this->y = y;
         }
@@ -50,7 +49,7 @@ class MyClass2 {
 };
 
 
-//encapsulation
+// encapsulation
 class MyClass3 {
 
     private:
@@ -63,28 +62,28 @@ class MyClass3 {
             this->prv_var = i;
         }
 
-        virtual ~MyClass3(){        // virtual destructor, first calls the destructor of the derived class and then base class.
-                                    // if "virtual" is not provided, then only base class destructor is called.
+        virtual ~MyClass3() {        // virtual destructor, first calls the destructor of the derived class and then base class.
+                                     // if "virtual" is not provided, then only base class destructor is called.
             cout << "base class destructor" << endl;
         }
 
-        int get_data(){
+        int get_data() {
             return this->prv_var;
         }
 
-        virtual void display(){                     //virtual keyword for polymorphism
+        virtual void display() {    // virtual keyword for polymorphism
             cout<<"parent method invoked"<<endl;
         }
 
 };
 
-//inheritance
+// inheritance
 class MyClass4 : public MyClass3 {
 
     public:
         int child_var;
 
-        MyClass4(int x, int y){
+        MyClass4(int x, int y) {
             this->parent_var = x;
             this->child_var = y;
         }

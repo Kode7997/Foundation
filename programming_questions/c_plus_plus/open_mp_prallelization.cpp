@@ -8,18 +8,17 @@ C/C++ provide directives to perform parallel computation
 2. MPI - message passing interface => helpful when we have multiple cores in cluster environment
 */
 
-void parallel_allowed(){
+void parallel_allowed() {
     int size  = 20;
     int x[size];
 
     #pragma omp parallel for
-    for (int i=0;i<size; i++){
+    for (int i=0;i<size; i++) {
         x[i] = i;
-        for (int j=0; j<10000000; j++){
+        for (int j=0; j<10000000; j++) {
             x[i] = i + 1;
         }
     }
-
 }
 
 void parallel_not_allowed(){
@@ -47,8 +46,6 @@ void parallel_not_allowed(){
         e.g:  #pragma omp parallel for private(i,j) shared(x, size)
     
     2. article: http://computing.stat.berkeley.edu/tutorial-parallelization/parallel-C.html#3-mpi
-
-
     */
 
 }

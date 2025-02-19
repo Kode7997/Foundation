@@ -7,7 +7,8 @@
 2. I/O: gets and puts, sprintf
 3. Scope of variables: 
     extern: global variable that can extend it's scope to another C source file
-    static: var available till the process is a live 
+    static: var available till the process is a live
+    volatile: informing the compiler not to optimize this var
 4. callback function
 5. pointer array and double pointer
 6. size of struct and unions
@@ -17,22 +18,24 @@
 9. use of -> and . operator while accessing the structure members
 10. string in C, methods used to copy, iterate and modify
 11. *(ptr + 0) is same as arr[0]  
+12. stack size of recursive calls: this size can be controlled using posix thread. usually size is determined based on the OS,
+    compiler, hardware arch. pthread_attr_get_stacksize();
+13. 
 */
 
 
 struct arr_ele {
-
     int ele1;
     int ele2;
-
 };
 
 typedef struct arr_ele ae; // this is the instance of the structure
 
 
-struct sizeofstruct {
+// padding doesn't happen if size is inline with the 4byte boundary. 
+struct sizeofstruct { 
     int *arr[10]; // 8 * 10 = 80 bytes // 64bit
-    char c;     // allocates 1 byte + 7 bytes (concept of padding -  for better CPU performance; limit the number of memory access)
+    char c;     // allocates 1 byte + 7 bytes (concept of padding -  for better CPU performance; limit the number of memory access, ensuring that data is aligned with memory boundaries)
     char *ch;   // 8 bytes
     float f;    // 4 bytes + 4 bytes(bcz of 64bit machine, allocates nearest boundary which is 8 bytes)
     double d;   // 8 bytes
@@ -43,10 +46,7 @@ Note:   local variables and structure instances, memory is allocated in the stac
         dynamic allocation of variables (malloc, calloc) memory gets allocated in HEAP memory and deallocation needs to be handled.
 */
 
-
-
 typedef struct sizeofstruct sos;
-
 
 union sizeofunion {
     int i;
@@ -59,7 +59,6 @@ void sizeof_str_and_union() {
     sos *s;
 
     // allocate memory to the structure
-
     s = (sos *)malloc(5 * sizeof(sos));
     printf("size of struc %zu\n",sizeof(struct sizeofstruct));
 
@@ -67,7 +66,7 @@ void sizeof_str_and_union() {
     // allocated memory for memebers at same location(key difference from structure)
     // size of Union is based on the size of the biggest member from Union family
 
-    union sizeofunion sou;
+    union sizeofunion sou; // bteer memory handling esp in embeded systems with limited memoery, and while dealing with different memory types
     sou.i = 10;
     printf("value of union memeber i: %d\n",sou.i);
 
@@ -119,18 +118,18 @@ void mem_calloc(){
 
 
 
-void callback_func(){
+void callback_func() {
     printf("this func is called using callback mechanism\n");
 }
 
-void caller_of_callback(void (*callback)()){
+void caller_of_callback(void (*callback)()) {
     printf("caller of callback\n");
     (*callback)(); // call callback function
 }
 
-void assign_and_callback(){               //callback function implementaton
+void assign_and_callback() {               //callback function implementaton
     printf("assign callback\n");
-    caller_of_callback(callback_func);
+    caller_of_callback(&callback_func);
 }
 
 void reverse_string(char str[]){
@@ -148,6 +147,7 @@ void reverse_string(char str[]){
 }
 
 void string_operations(){
+    // strstr, substr, strcmp, strtok, strcat, strcpy
 
     char str1[20] = "Hello"; // static allocation; mutable (can be modified)
     char str2[] = "world"; // size is determined automatically
@@ -179,7 +179,7 @@ void string_operations(){
 ae get_max(int a, int b) {
     ae ele;
 
-    if(a > b){
+    if(a > b) {
         ele.ele1 = a;
         ele.ele2 = b;
     }else{
@@ -203,9 +203,9 @@ void dot_and_arrow_oper() {
     // if struct is an instance of a strucute, then dot is used
     arr array; // this is the structure instance
     array.size = 5;
-    array.arr = (int *)malloc(array.size * sizeof(int));
+    array.arr = (int *)malloc(array.size * sizeof(int)); // dot operator is used bcz of the arr is instance not pointer reference.
 
-    for(int i=0;i<array.size; i++){
+    for(int i=0;i<array.size; i++) {
         array.arr[i] = i+1;         // dot oper is used bcz of struct instance 
     }
 
@@ -215,6 +215,7 @@ void dot_and_arrow_oper() {
     for(int i=0;i<a->size; i++) {
         printf("ele: %d\t",a->arr[i]); // arrow oper bcz structure pointer is used.
     }
+
 }
 
 // ************************************************** memory allocation of different type of variables *********************************
@@ -233,7 +234,7 @@ void example_function() {
 }
 
 int main() {
-    //size of each data type in C
+    // size of each data type in C
     char c; // 1byte
     short int si; // 2 bytes 
     int i = 10; // 4 bytes
@@ -246,7 +247,14 @@ int main() {
     long double size = sizeof(ld);
     int *tptr; // 4bytes in 32bit machine and 8 bytes in 64bit machine [difference]
 
-    printf("size: %Lf",size);
+    // var types based on the memory and type
+    // register - tell compiler store the value in cpu registers
+    // volatile - tell compiler to not to optimise the data in this var
+    // extern - tell compiler that definition of this variable is other file
+
+
+
+    printf("size: %Lf\n",size);
     int arr[2]; // this is static allocation of memory, therefore memory is allocated in Stack
 
     printf("%d\n",arr[3]); // throws warning and not error
@@ -265,6 +273,10 @@ int main() {
     string_operations(); //strcpy, strcmp, strcat
     
     dot_and_arrow_oper();
-    
+    /*
+    - to access members you need to use dot operator
+    -  if a pointer is used, then -> operator is used.
+    */
+
     return 0;
 }

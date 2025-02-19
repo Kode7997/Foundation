@@ -1,4 +1,10 @@
 #include <stdio.h>
+/*
+use case:
+1. to check the different data types
+2. embedded systems: when memory is limited.
+
+*/
 
 union item
 {

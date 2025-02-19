@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Game{
+class Game {
 
     public:
         string name;
@@ -22,11 +22,11 @@ class Game{
             cout << "destructor is called" << endl;
         } 
 
-        void displayTotalCost(){
+        void displayTotalCost() {
             cout << "total cost of all games: " << totalPrice << endl;
         }
 
-        void displayGameInformation(){
+        void displayGameInformation() {
             cout << "name of the game: " << name << " size: "<< size << " author: " << author << " cost in ₹: " << price << endl;
         }
 };

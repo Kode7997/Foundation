@@ -48,11 +48,11 @@ void preprocessors_check(){
   
 }
 
-int main(){
+int main() {
 
     // 1. struct understanding
-    //struct Array1 *arr;
-    //arr.size = 10;
+    // struct Array1 *arr;
+    // arr.size = 10;
     //printf("array size: %d\n", arr.size);
     // arr = (struct Array1*)malloc(sizeof(struct Array1));
     // arr->size = 10;

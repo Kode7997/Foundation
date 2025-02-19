@@ -1,9 +1,4 @@
 
-
-from traceback import print_tb
-from turtle import clear
-
-
 def sample_lambda():
 
     power = lambda x,y: y ** x

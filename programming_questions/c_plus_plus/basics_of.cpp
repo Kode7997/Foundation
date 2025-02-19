@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<string> splitBySpace(string& str){
+vector<string> splitBySpace(string& str) {
 
     stringstream ss(str); // stringstream, split by space. 
     vector<string> words;
@@ -19,8 +19,8 @@ vector<string> splitBySpace(string& str){
     string sentence;
     ostringstream oss;      // join string of words. ostringstream oss;
 
-    for(string word : words){
-        if (word != words[0]){
+    for(string word : words) {
+        if (word != words[0]) {
             oss << " ";
         }
         oss << word;
@@ -100,7 +100,7 @@ void vectorAndArray(){
 }
 
 
-void func_parameters(int &a, char c, string name = "keshav"){ // here we reference the variable a
+void func_parameters(int &a, char c, string name = "keshav") { // here we reference the variable a
     // default value should be end when clubbed with the other regular variables
     cout << "func default parameters: " << name << endl;
     a = 20;
@@ -120,6 +120,42 @@ void pass_array_to_func(int *myArray, int size){
         size of "myArray" will be 8 if it is 64bit machine and 4 if 32bit machine.
         Therefore it is required to pass the size where array is declared. 
     */
+}
+
+void string_methods(string& str) {
+    // substr, strcmp, strcpy, strcat, strtok(tokenise the string), strstr(check if substring present)
+
+    //check if substr is present in the string
+    string substr1 = "load";
+    int len = substr1.length();
+    vector<string> words;
+
+
+    char *cstr = new char[str.length()+1]; //to convert c++ string to c string
+    strcpy(cstr, str.c_str());  // copy to cstr from converting string in c++ to c string using str.c_str()
+    char *token = strtok(cstr, " "); //tokenize with delimeter.
+
+    while (token != NULL)   // this is how tokens are generated in C
+    {
+        words.push_back(token);
+        token = strtok(NULL, " "); // tell controller from where it left. basically start from null which it stop at the end of first iteration
+    }
+    
+    for(auto w: words) {
+        cout<< " word is: "<<w<<endl;
+    }
+
+    if(str.find(substr1) != string::npos) { // find used to substring 
+        cout<<"YES "<<endl;
+        int pos = str.find(substr1);
+        cout << "pos: "<<pos<<endl;
+        str = str.substr(pos+len);
+        cout<<"new str: "<<str<<endl;
+    }else{
+        cout<<"NO"<<endl;
+    } 
+
+    return;
 }
 
 int main() {
@@ -148,17 +184,17 @@ int main() {
     //string operations
     stringOperations();
 
-    //loops in Cpp
+    // loops in cpp
     cout << "loops in CPP" << endl;
     loopsInCpp();
 
 
-    //vectors vs array
+    // vectors vs array
     cout << "vectors and array" << endl;
     vectorAndArray();
     
 
-    //func parameters, pass by reference
+    // func parameters, pass by reference
     int b = 10;
     cout << "before change: " << b << endl;
     func_parameters(b, 'c');                // here, we dont pass the address of b, we pass value instead and compiler internally will handle dereference
@@ -173,6 +209,7 @@ int main() {
     // plusFunc(int x, int y)
     // plusFunc(double x, double y) polymorphism - func overloading
 
-    
+    string str1 = "load balancer will distribute the traffic accross server to minimize the load on specific server";
+    string_methods(str1);
     return 0;
 }

@@ -29,6 +29,9 @@ void vector_func(){
     //remove element
     cars.pop_back();
 
+
+    //auto it = std::find(vec.begin(), vec.end(), element_to_find);
+
     // front and back. There is no push front or push back in the vectors.
     cout << "cars front: "<<cars.front() << endl;
     cout << "cars back: "<<cars.back() << endl;
@@ -70,6 +73,7 @@ void list_func() {
     -> two major differences between lists and vectors are:
     -> You can add and remove elements from both the beginning and at the end of a list, while vectors are generally optimized for adding and removing at the end.
     -> Unlike vectors, a list does not support random access, meaning you cannot directly jump to a specific index, or access elements by index numbers.
+    -> list is a double linked list in c++
     */
 
     list<string> lst;
@@ -116,7 +120,7 @@ void stack_func(vector<string>& arr){
 }
 
 
-void queue_func(){
+void queue_func() {
 
     queue<string> q;
 
@@ -127,11 +131,11 @@ void queue_func(){
     q.push("UK");
 
     cout << "q front: " << q.front() << endl;
-    cout  << "q back: " << q.back() << endl;
-
+    cout  << "q back: " << q.back() << endl; //top or seek
+    cout << "q top: "<<q.back()<<endl;
     cout << "q elements" << endl;
     
-    while(!q.empty()){                  
+    while(!q.empty()) {                  
         cout << q.front() << endl;
         q.pop();
     }
@@ -204,9 +208,9 @@ void map_func(){
 
     people.erase(1);
 
-    map<int, string>:: iterator it;
+    //map<int, string>:: iterator *it;
 
-    for(it = people.begin(); it != people.end(); it++){
+    for(auto it = people.begin(); it != people.end(); it++) {
 
         cout << (it->first) << " is " << (it->second) << endl;
     }
@@ -223,12 +227,41 @@ int main() {
     // cout << "changed the name of the array\n";
     // for(auto it=varr.begin(); it!=varr.end();it++){
     //     cout << *it << endl;
-    // }
+    //   }
 
-    //queue_func();
+    queue_func();
 
-    //dequeue_func();
+    // dequeue_func();
 
     // set_func();
-    map_func();
+    // map_func();
 }   
+
+
+/*
+common methods in std lib
+vector, list(double linkedlist), map, queue, dequeu, stack
+
+1. ds.find(key) != ds.end() //check for value. if equal then no ele found else found. 
+    if string, string.find(char) == npos; returns the position if found else -1
+    clear => string.clear()
+2. ds.begin(), ds.end(), ds.rbegin(), ds.end() //start and end
+3. ds.earse(key)
+4. ds.empty()
+5. vector<string>::iterator *it; or auto it = ds.begin()
+6. push => ds.push_back(ele), ds.push_front(ele), ds.push()
+7. pop => ds.pop_back(), ds.pop_front(), ds.pop()
+8. map.first, map.second
+
+
+list ds - it's a double linked list
+advance iterator by 2? then advance(iterator, 3);
+auto it = find(myList.begin(), myList.end(), elementToFind);
+if (it != myList.end()) {
+
+set ds:
+set.insert(ele)
+
+pair ds:
+pair<int,int> pr; p
+*/

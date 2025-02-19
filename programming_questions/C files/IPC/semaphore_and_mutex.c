@@ -1,5 +1,5 @@
 /*
-can be solved using semphors wait and signal mechanism 
+race condition can be solved using semphors wait and signal mechanism 
 which solves race condition and consistency of shared resource
 
 Semaphor:
@@ -50,7 +50,7 @@ void semaphors() {
     pthread_t thread[2];
     int ids[2];
 
-    sem_init(&semaphore, 0, 1);
+    sem_init(&semaphore, 0, 1); // allowing only one thread enter critical section
 
     //create two threads
     for (int i=0;i<2;i++) {
@@ -70,7 +70,7 @@ pthread_mutex_t lock;
 
 void thread_func_for_lock(void *args){
     pthread_mutex_lock(&lock);
-    counter++;
+    counter++;      //crtical section
     pthread_mutex_unlock(&lock);
 }
 

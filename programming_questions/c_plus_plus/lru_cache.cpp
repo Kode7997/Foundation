@@ -62,7 +62,7 @@ class LRUC{
         }
 
         //put
-        void put(int key, int value){
+        void put(int key, int value) {
             if(cache.find(key) != cache.end()) {
                 Node* node = cache[key];
                 remove(node);

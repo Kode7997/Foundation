@@ -9,7 +9,7 @@
 #define PORT 8080
 
 
-int main(){
+int main() {
 
     /*          SERVER              */
 
