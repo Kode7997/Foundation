@@ -17,12 +17,10 @@
 8. memory leak (occurs when memory is not properly freed), stack-overflow and underflow
 9. use of -> and . operator while accessing the structure members
 10. string in C, methods used to copy, iterate and modify
-11. *(ptr + 0) is same as arr[0]  
+11. *(ptr + 0) is same as arr[0]
 12. stack size of recursive calls: this size can be controlled using posix thread. usually size is determined based on the OS,
     compiler, hardware arch. pthread_attr_get_stacksize();
-13. 
 */
-
 
 struct arr_ele {
     int ele1;
@@ -122,6 +120,9 @@ void callback_func() {
     printf("this func is called using callback mechanism\n");
 }
 
+// use case: used in event handling. lets say i pass the function as a parameter to the function, only when certain event occurred
+// i will call the callback function to perform certain operation.
+
 void caller_of_callback(void (*callback)()) {
     printf("caller of callback\n");
     (*callback)(); // call callback function
@@ -146,8 +147,8 @@ void reverse_string(char str[]){
     printf("reversed string %s\n",str);
 }
 
-void string_operations(){
-    // strstr, substr, strcmp, strtok, strcat, strcpy
+void string_operations() {
+    // strstr(return the pointer of first occurence of char or string), strcmp, strtok(), strcat, strcpy
 
     char str1[20] = "Hello"; // static allocation; mutable (can be modified)
     char str2[] = "world"; // size is determined automatically

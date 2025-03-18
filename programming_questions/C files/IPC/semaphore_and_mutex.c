@@ -57,7 +57,7 @@ void semaphors() {
         pthread_create(&thread[0], NULL, thread_func, NULL)
     }
 
-    //join threads that are created
+    //wait for threads to exit
     for(int i =0;i<2;i++) {
         pthread_join(&thread[0], NULL, thread_func, NULL);
     }

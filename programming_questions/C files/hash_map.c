@@ -1,105 +1,179 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 /*
-hashmap = table with key, value pair
+- key, value
+- collision
+    - linked list
+- hash_key 
+- insert
+- search
+- delete 
+
+- read/write problem
 */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 #define SIZE 10
 
-struct Entry{
+struct Node{
     char *key;
-    char *val;
-    struct Entry *next;
-};
-typedef struct Entry *entry;
-
-struct HashTable {
-    struct Entry *bucket[SIZE];
+    char *value;
+    struct Node *next;
 };
 
-typedef struct HashTable *hashtable;
+struct HashMap{
+    int capacity;
+    struct Node **bucket;
+};
 
-hashtable create_table(){
+struct HashMap* create_hashmap(int capacity){
 
-    hashtable table = (hashtable)malloc(sizeof(struct HashTable));
-    for(int i=0;i<SIZE; i++){
-        table->bucket[i] = NULL;
+    if(capacity == 0) return NULL;
+
+    struct HashMap* hmap = (struct HashMap *)malloc(sizeof(struct HashMap));
+    
+    if(hmap ==  NULL) return NULL;
+
+    hmap->capacity = capacity;
+
+    hmap->bucket = (struct Node**)malloc(capacity * sizeof(struct Node));
+
+    for(int i=0;i<hmap->capacity;i++){
+        hmap->bucket[i] = NULL;
     }
-    return table;
+
+    return hmap;
+
 }
 
-int k_hash(char *key){
+int get_hash_key(char *key){
     int hash = 0;
-    
-    for(int i=0; i<strlen(key); i++) {
-        hash = hash + (int)(key[i]);
+    for (int i=0; key[i] != '\0';i++){
+        hash = hash + key[i] + 0;
     }
 
     return (hash % SIZE);
-    }
+}
 
-void insert(hashtable hmap, char *key, char *val){
+struct Node* create_node(char *key, char *value){
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+    node->key = (char *)malloc(strlen(key)+1);
+    node->value = (char *)malloc(strlen(value)+1);
+    strcpy(node->key, key);
+    strcpy(node->value, value);
+    node->next = NULL;
 
-    int hash_key = k_hash(key);
+    return node;
+}
 
-    if (hmap->bucket[hash_key] ==  NULL) {
-        hmap->bucket[hash_key] = (entry)malloc(sizeof(struct Entry));
-        hmap->bucket[hash_key]->key = (char *)malloc(sizeof(strlen(key)+1));
-        hmap->bucket[hash_key]->val = (char *)malloc(sizeof(strlen(val)+1));
-        strcpy(hmap->bucket[hash_key]->key, key);
-        strcpy(hmap->bucket[hash_key]->val, val);
-        
-        printf("new member added\n");
-        hmap->bucket[hash_key]->next = NULL;
-    } else {
-        entry prev = NULL;
-        entry node = hmap->bucket[hash_key];
-        while (node != NULL){
-            if (strcmp(node->key, key) == 0){
-                printf("updated with new value\n");
-                free(node->val);                                    //free memory before update
-                node->val = (char *)malloc(sizeof(strlen(val)+1));
-                strcpy(node->val, val);
-                return;
-            }
+int insert(struct HashMap *hmap, char *key, char *value){
+    
+    if ((key == NULL) || (hmap == NULL)) return -1;
+
+    int hash = get_hash_key(key);
+    printf("hash values %d\n", hash);
+    
+    struct Node* new_node = create_node(key, value);
+
+    if(hmap->bucket[hash] == NULL){
+        //create node and add to bucket at index of hash value
+        hmap->bucket[hash] = new_node;
+        return 1;
+    }else{
+        // if same key already exist then change the value
+        struct Node* node = hmap->bucket[hash];
+        struct Node *prev;
+        while(node != NULL) {
             prev = node;
+            if (strcmp(node->key, key)==0){
+                free(node->value);
+                node->value = (char *)malloc(strlen(value)+1);
+                strcpy(node->value, value);
+                return 1;
+            }
             node = node->next;
         }
+        // else add newnode to the index and next will be existing node at index of hash
+        prev->next = new_node;
+    }
+    return -1;
+}
 
-        if (node == NULL) {
-            printf("insert at end of linked list\n");
-            entry new_entry = (entry)malloc(sizeof(struct Entry));
+int delete(struct HashMap *hmap, char *key){
+
+    int hash = get_hash_key(key);
+
+    if (hmap->bucket[hash] == NULL){
+        return -1;
+    }else{
+        struct Node* node = hmap->bucket[hash];
+        if(strcmp(node->key, key)==0){
+            hmap->bucket[hash] = node->next;
+            free(node->key);
+            free(node->value);
+            free(node);
+            return 1;
+        }else{
+            struct Node* prev=NULL;
+            while (node != NULL)
+            {   
+                prev = node;
+                if(strcmp(node->key, key)==0){
+                    prev->next = node->next;
+                    free(node->key);
+                    free(node->value);
+                    free(node);
+                    return 1;
+                }
+                node = node->next;
+            }
+            if (prev){
+                printf("Key %s not present!\n", key);
+                return -1;
+            }
             
-            new_entry->key = (char *)malloc(sizeof(strlen(key)+1));
-            new_entry->val = (char *)malloc(sizeof(strlen(val)+1));
-            
-            strcpy(new_entry->key, key);
-            strcpy(new_entry->val, val);
-            new_entry->next = NULL;
-            prev->next = new_entry;
         }
-
     }
-  
-    }
+    return -1;
+}
 
+void display(struct HashMap *hmap){
+    for(int i=0;i<hmap->capacity;i++){
+       if(hmap->bucket[i] != NULL){
+           struct Node* node = hmap->bucket[i];
+           while (node != NULL)
+           {
+               printf("index i: %d Key: %s value: %s\n",i, node->key, node->value);
+               node = node->next;
+           }
+           
+       }else{
+           printf("index i: %d is empty\n",i);
+       }
+    }
+}
 
 int main(){
 
-    hashtable hmap = create_table();
-    int hash = k_hash("name");
+    struct HashMap *hmap = create_hashmap(SIZE);
+    
+    if (hmap == NULL){
+        printf("HashMap creation failed\n");
+    }
 
-    insert(hmap ,"name","keshav");
-    insert(hmap, "enam","cisco");
-    insert(hmap, "enam","cisco pvt limited");
+    insert(hmap, "10","ten");
+    insert(hmap, "20","twenty");
+    insert(hmap, "01","one");
+    insert(hmap, "02", "two");
+    insert(hmap, "ten", "10");
+    insert(hmap, "net", "10");
+    insert(hmap, "net", "100");
 
-    /*
-    memory handling
-    - free val, key
-    - free node 
-    - table 
-    */
+    display(hmap);
+    delete(hmap, "etn");
+    display(hmap);
+
+    //freehashmap();
     return 0;
 }

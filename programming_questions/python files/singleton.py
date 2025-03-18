@@ -6,16 +6,15 @@
 
 #either __call__ method is overrided or __new__ method is overrided
 
-
 #metaclass
 class SingletonMeta(type):
-    _instance = {}
+    _instance = None
 
     def __call__(cls, *args, **kwargs):
         print("class", cls)
-        if cls not in cls._instance:
-            cls._instance[cls] = super().__call__(*args, **kwargs)
-        
+        if cls._instance is None:
+            cls._instance = super().__call__(*args, **kwargs)
+
         return cls._instance
 
 

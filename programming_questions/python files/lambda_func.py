@@ -1,7 +1,7 @@
 
 def sample_lambda():
 
-    power = lambda x,y: y ** x
+    power = lambda x,y: x ** y
     print(power(2,3))
 
 

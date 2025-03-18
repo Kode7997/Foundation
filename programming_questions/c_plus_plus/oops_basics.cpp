@@ -101,10 +101,10 @@ class MyClass4 : public MyClass3 {
         }
 };
 
-//multi-level inheritance
+// multi-level inheritance
 // code snippet: class MyClass4 : public MyClass3, public MyClass2{};
 
-//polymorphism => "many forms"
+// polymorphism => "many forms"
 // method overriding and method overloading
 
 
@@ -146,7 +146,6 @@ int main(){
     -   overriding requires "virtual/override" keywords otherwise it can cause runtime polymorphism issue. without these
         keywords, base func is shadowed.
     -   overloading: Don't need any keywords, which function to be called is decided during runtime based on parameter type passed.
-
     */
 }
 

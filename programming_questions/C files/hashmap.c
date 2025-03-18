@@ -19,7 +19,7 @@ struct Entry {
     struct Entry *next;
 };
                                                                                                                                          
-//create lock where data is updated
+// create lock where data is updated
 // another lock to track multiple readers
 
 struct HashMap {
@@ -141,6 +141,7 @@ void delete(struct HashMap *map, char *key){
                 free(node);
                 printf("delete successful\n");
             }
+            node = node->next;
         }
     }  
 

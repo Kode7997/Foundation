@@ -13,7 +13,7 @@ of the program.
 3. difference between thread and process?
 */
 
-int main(){
+int main() {
     // fd[0] read, fd[1] write
     int fd[2];
     pipe(fd); // create of one-way
@@ -58,5 +58,23 @@ communication between two processes.
         int fd
         fd  = open("/tmp/my_fifo", RDONLY)
         read(fd, buffer, size)
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <fcntl.h>
+    #include <sys/stat.h> //status of a file
+    #include <unistd.h>
+
+    int main() {
+        const char *fifo_name = "/tmp/my_fifo";
+        mkfifo(fifo_name, 0666);
+
+        int fd = open(fifo_name, O_WRONLY);
+        write(fd, "Hello from writer!\n", 19);
+        close(fd);
+
+        return 0;
+}
+
 
 */

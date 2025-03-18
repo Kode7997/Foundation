@@ -33,7 +33,7 @@ void server(){
         printf("failed to listen\n"); //passivlt listen to the port
     }
 
-    if (new_socket = accept(server_fd, (struct sockaddr_in *)&address, strlen(address)) < 0){
+    if (new_socket = accept(server_fd, (struct sockaddr_in *)&address, strlen(address)) < 0) {
         printf("failed to accept\n");
     }
 
@@ -47,7 +47,7 @@ void server(){
 }
 
 
-void client(){
+void client() { 
 
     int client_sock; // client_sock is the client file descriptor
     struct sockaddr_in srv_address;

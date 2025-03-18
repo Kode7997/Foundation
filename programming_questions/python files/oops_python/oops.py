@@ -23,7 +23,6 @@ class Person:
         s = self.__priv()
         return s
     
-    
 
 class Employee(Person):
 
