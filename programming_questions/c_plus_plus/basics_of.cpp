@@ -87,15 +87,15 @@ void loopsInCpp(){
     }
 }
 
-void vectorAndArray(){
+void vectorAndArray() {
     /*
-    vector are resizable arrays. it's size grows and shrinks. and each element is accessible
+    vector are resizable arrays. it's size grows and shrinks. and each element can be accessed by the indexing
     */
 
     vector<string> vObj;
     vObj.push_back("hello");
     vObj.push_back("world");
-
+    vObj.pop_back(); // pops last element
     cout << "vector obj: " << vObj[0] << endl; // vObj cannot be printed directly w/o indexing 
 }
 

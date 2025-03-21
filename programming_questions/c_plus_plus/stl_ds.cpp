@@ -73,7 +73,7 @@ void list_func() {
     -> two major differences between lists and vectors are:
     -> You can add and remove elements from both the beginning and at the end of a list, while vectors are generally optimized for adding and removing at the end.
     -> Unlike vectors, a list does not support random access, meaning you cannot directly jump to a specific index, or access elements by index numbers.
-    -> list is a double linked list in c++
+    -> list is a double linkedlist in c++
     */
 
     list<string> lst;

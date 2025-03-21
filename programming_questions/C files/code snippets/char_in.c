@@ -9,7 +9,6 @@ int main(){
     // printf("string *s: %s\n", s); // this would print whole string in C
     char const *s1 = "this is another literal\n";
     //printf("const char: %s\n", *s1); // segmentation fault, why?
-
     
     // constant pointer
     char a = 'a';
@@ -27,12 +26,6 @@ int main(){
     char c = 'c';
     constant_to_pointer = &c;
     printf("constant to pointer: %c\n", *constant_to_pointer); 
-
-
-
-
-
-
 
     // char array is different from char pointer, can be sliced and be modified. it depends how we declare the string in C
     char c_arr[] = "this is char array";

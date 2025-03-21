@@ -7,6 +7,9 @@ protected variables are not accessible outside the class. Inherited class can us
 */
 class MyClass {     // class name
     int c;          // private variables.
+    protected:      // protected vars and functions/methods
+        int protected_var;
+
     public:         // access specifier. if not access specifier, then all variables are private. //public, private, protected.
         int a;      
         int b;
@@ -24,7 +27,7 @@ class MyClass {     // class name
 
 }; // semicolon is mandatory for class
 
-MyClass MyClass::outside_method() {
+MyClass MyClass::outside_method() { // :: scope resolution opearator
     MyClass obj4;
     cout<<" method defined outside class using ::"<<endl;
 
