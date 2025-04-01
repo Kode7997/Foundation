@@ -123,11 +123,7 @@ int main(){
     delete_node(root,10);
     inorder(root);
 
-
-    
-
     // delete of node - 3/4 cases - root, leaf/child node, parent node
-
-
+    
     return 0;
 }

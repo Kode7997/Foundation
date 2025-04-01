@@ -20,16 +20,16 @@ int shm_fd;
 shm_fd = shm_open("shared_mem_name", O_CREATE | O_RDWR, 0666);
 
 //configure the memory space which is trunc
-ftruncate(shm_fd, SIZE);
+ftruncate(shm_fd, SIZE); 
 
 // attach mem to current process address space
 //MAP_SHARED - indicate this is shared with other process
-//PROT_WRITE - write 
+//PROT_WRITE - write
 shm_ptr = mmap(0, SHM_SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
 
 
 //write
-sprintf(shm_ptr, "producer wrote to the shared memory");
+sprintf(shm_ptr, "producer wrote to the shared memory"); // sprintf write to the memory pointer is pointing to
 }
 
 
@@ -41,7 +41,7 @@ void consumer(){
     //open
     shm_fd = shm_open("shared_mem_name", O_READ, 0666);
 
-    //mmap - memory map to the current process address space
+    //mmap - memory map to the current process address space. // PROT => protection flag
     shm_ptr = mmap(0, SIZE, PROT_READ, PROT_SHARED, shm_fd, 0);
 
     //read

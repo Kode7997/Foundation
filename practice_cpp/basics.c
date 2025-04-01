@@ -33,7 +33,7 @@ int main(){
 
         //trim - no substr in C
 
-        int a = 3, b =5;
+        int a = 3, b = 5;
         printf("max: %d\n",max(a,b));
     }
 

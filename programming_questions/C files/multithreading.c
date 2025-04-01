@@ -28,7 +28,7 @@ void* print_msg(void* info) {
     return NULL;
 }
 
-int  main(){
+int  main() {
     
     pthread_t thread1, thread2;
     struct msg arg1 = {"Hello", "world"};

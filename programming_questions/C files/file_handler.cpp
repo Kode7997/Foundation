@@ -24,7 +24,6 @@ void write_and_read_file() {
         fprintf(fp, "keshav is learning something\n");
         fputs("Hello world\n",fp);
     }
-
     
     /*
     If following two lines are not there, then program will lead to segm issue. basically reading while fp is open
@@ -41,7 +40,7 @@ void write_and_read_file() {
         //printf("%s", buffer);
         cout << buffer <<endl;
     }
-  
+    
     fclose(fp);
 }
 

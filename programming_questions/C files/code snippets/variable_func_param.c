@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+
 #include<stdarg.h>
+
 #include<string.h>
 
 
@@ -55,9 +57,6 @@ int main(){
     */
 
     print("ddddf",3,4,5,6, 3.5);
-
-    
-
 
     return 0;
 }

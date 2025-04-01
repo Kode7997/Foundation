@@ -20,6 +20,14 @@ void helper_func(float (*mul)(float, float)){
     return;
 }
 
+float divide(float a, float b){
+    return a/b;
+}
+
+void helper_division(float (*division)(float, float), float a, float b){
+    float res = (*division)(a, b);
+    printf("divsion of a and b %f\n",res);
+}
 
 int main(){
 
@@ -38,6 +46,8 @@ int main(){
 
     // pass func as parameters
     helper_func(&multiply);
+
+    helper_division(&divide, 2.0, 1.0);
 
     
     return 0;

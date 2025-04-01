@@ -108,7 +108,7 @@ void mem_calloc(){
     printf("size of 2-d array %lu\n",sizeof(arr));
     
     // free memory
-    for(int i=0;i<5;i++){
+    for(int i=0;i<5;i++) {
         free(arr[i]);
     }
     free(arr);

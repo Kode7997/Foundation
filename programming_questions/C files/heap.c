@@ -14,7 +14,7 @@ min heap:
 #include<stdlib.h>
 
 
-struct heap{
+struct heap {
     int *arr;
     int size;
     int left;
