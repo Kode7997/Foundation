@@ -67,7 +67,7 @@ void string_methods(string& str) {
         cout<<"new str: "<<str<<endl;
     }else{
         cout<<"NO"<<endl;
-    }
+    } 
 
     return;
 }

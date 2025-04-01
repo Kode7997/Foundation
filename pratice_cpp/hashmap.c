@@ -27,7 +27,7 @@ struct HashMap {
     struct Node **bucket;
 };
 
-struct HashMap* create_hashmap(int capacity) {
+struct HashMap* create_hashmap(int capacity){
 
     if(capacity == 0) return NULL;
 
@@ -39,7 +39,7 @@ struct HashMap* create_hashmap(int capacity) {
 
     hmap->bucket = (struct Node**)malloc(capacity * sizeof(struct Node));
 
-    for(int i=0;i<hmap->capacity;i++) {
+    for(int i=0;i<hmap->capacity;i++){
         hmap->bucket[i] = NULL;
     }
 
@@ -47,9 +47,9 @@ struct HashMap* create_hashmap(int capacity) {
 
 }
 
-int get_hash_key(char *key) {
+int get_hash_key(char *key){
     int hash = 0;
-    for (int i=0; key[i] != '\0';i++) {
+    for (int i=0; key[i] != '\0';i++){
         hash = hash + key[i] + 0;
     }
 

@@ -14,24 +14,17 @@ class Parent {
 class Child : public Parent {
 
     public:
-        int c=10;
+        int c = 10;
         ~Child(){
             cout<<"child destructor is called\n";
         }
-
-        void display1();
 };
-
-void Child::display1(){
-    cout<<" display1 defined outside"<<endl;
-}
-
 int main(){
 
     Parent *p = new Child; // with this declaration, we can access any of the derived class method at runtime
     cout<<"child value: "<<p->d<<endl;
-    static_cast<Child*>(p)->display1();
-    delete p; // with virtual, first child destructor followed by parent destructors
+
+    delete p; // with virtual, first child destructor followed by base destructors
 
     return 0;
 }
@@ -43,7 +36,7 @@ class A{
     virtual ~base() = 0;
 };
 // defined outside the class
-A::~base(){
+A::~Base(){
 cout<<"destructor";
 }
 

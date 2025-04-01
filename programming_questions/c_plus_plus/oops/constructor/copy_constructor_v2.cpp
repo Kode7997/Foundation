@@ -7,7 +7,7 @@ shallow copy(keeps the reference to the object) vs deep copy (maintains new memo
 #include <cstdlib>
 using namespace std;
 
-class Number {
+class Number{
    
   public:
     int *number;
@@ -18,25 +18,26 @@ class Number {
         cout<<"number mem is: "<<number<<endl;
     }
 
-    Number( Number& otherNumber) {
+    Number( Number& otherNumber){
       *number = *(otherNumber.number);
     }
 
-    int get() {
+    int get(){
       return *number;
     }
 
-    void set(int num) {
+    void set(int num){
       *number = num;
     }
 
-    ~Number() {
+    ~Number(){
       cout<<"destructor is called"<<endl;
       free(number);
     }
+
 };
 
-int main() {
+int main(){
     int static_add = 1;
     cout<<"static address: "<<&static_add<<endl;
     //int* heap_add = (int *)malloc(sizeof(int));

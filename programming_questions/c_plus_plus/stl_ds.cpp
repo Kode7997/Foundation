@@ -9,6 +9,7 @@ using namespace std;
 #include<queue>
 
 
+
 void vector_func(){
     
     vector<string> cars = {"Volvo", "BMW", "Ford", "Mazda"};
@@ -182,7 +183,7 @@ void set_func(){
     set<int> s = {6,5,3,2,1,0};
     s.insert(100);
 
-    for (int i : s) {
+    for (int i : s){
         cout << i << " ";
     }
 
@@ -213,7 +214,6 @@ void map_func(){
 
         cout << (it->first) << " is " << (it->second) << endl;
     }
-
 
 }
 
