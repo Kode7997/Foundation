@@ -6,22 +6,22 @@ shallow copy(keeps the reference to the object) vs deep copy (maintains new memo
 #include <sstream>
 using namespace std;
 
-class Number{
+class Number {
 
   private:
     int number;
   
   public:
 
-    Number(int number): number(number){
+    Number(int number): number(number) {
       cout<<"number constructor called\n";
     }
 
-    Number(const Number& otherNumber){
+    Number(const Number& otherNumber) {
       number = otherNumber.number;
     }
 
-    int get(){
+    int get() {
       return number;
     }
 
@@ -43,10 +43,22 @@ int main(){
   
   Number num2 = num1; // this copy constructor does a deep copy of object and not shallow copy
   cout<<"num2: "<<num2.get()<<endl;
- 
+
   num1.set(10);
   cout<<"num1: "<<num1.get()<<endl;
   cout<<"num2: "<<num2.get()<<endl;
+
+
+  // what if new is used 
+    // Number *num1 = new Number(10);
+    // cout<<"num1: "<<num1->get()<<endl;
+
+    // Number *num2 = num1;                // shallow copy
+    // cout<<"num2: "<<num2->get()<<endl;
+
+    // num1->set(20);  
+    // cout<<"num1: "<<num1->get()<<endl;
+    // cout<<"num2: "<<num2->get()<<endl;
 
   return 0;
 }

@@ -19,6 +19,8 @@ class Game {
             }
         
         ~Game() {
+            // for normal objects default constructor is called and objects are deleted
+            // for heap resources, file, custom constructor is invoked
             cout << "destructor is called" << endl;
         } 
 
