@@ -26,12 +26,13 @@ vector<string> splitBySpace(string& str) {
         oss << word;
     }
     
-    sentence = oss.str();
+    // stream to string
+    sentence = oss.str(); // another way is to use std::to_string(int_number)
     cout << "sentence is: "<< sentence << endl;
     return words;
 
 }
-void stringOperations(){
+void stringOperations() {
 
     string fName = "keshav";
     string lName = "_n";

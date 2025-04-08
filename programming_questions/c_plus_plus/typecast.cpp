@@ -15,7 +15,7 @@ int main() {
     //static_cast, dynamic_cast, const_cast, reinterpret_cast
 
     int a = 16;
-    double b = static_cast<int>(a);
+    double b = static_cast<double>(a);
     cout << "double of a: "<< b << endl;
 
     /*

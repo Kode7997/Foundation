@@ -34,12 +34,12 @@ int main(){
     string substring = "world";
 
     size_t pos = str4.find(substring); // string.find(c) returns the position
-    if (pos != string::npos){
+    if (pos != string::npos){  // npos = no position
         cout << "subtring at: "<<pos<<endl;
     }
 
 
-    while(getline(cin, line, '.')){
+    while(getline(cin, line, '.')) {
         cout << "line: "<<line<<endl;
         stringstream ss(line);    // add something to stringstream
         string word;

@@ -13,7 +13,14 @@ class Base{
         
         
         friend class Derived; // make derived class as friend of base
+        friend void display(const Base& b); // allows global scope of access. any class can call this function w/o class object.
+                                            // it can access private members as well.
+
 };
+
+void display(const Base& b){
+    cout<<"friend function"<<endl;
+}
 /*
     - Violates the inheritance properties
     - Tightly coupled

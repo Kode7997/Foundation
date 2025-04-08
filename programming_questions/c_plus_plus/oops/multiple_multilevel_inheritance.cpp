@@ -10,6 +10,8 @@ Diamond Problem ->  diamond shape
             Child
 */
 
+// final keyword: prevent further inheritance
+
 class Base {
     public:
     Base(){

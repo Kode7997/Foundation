@@ -28,7 +28,20 @@ void vector_func(){
     //remove element
     cars.pop_back();
 
+    // last elemet
+    cars.back();
+    cars.begin();
 
+    //cars.emplace() - it directly constructs the objects in the memory location avoiding temporary copies.
+    /*
+    emplace_back: Constructs the element in-place directly at the end of the vector using the arguments provided. 
+    This avoids creating a temporary object and moving it into the vector, making it more efficient for objects with 
+    complex constructors.
+
+    push_back: Requires the element to be fully constructed first, then copies or moves it into the vector. 
+    If you're adding an already-created object, push_back is perfectly fine.
+    */
+   
     //auto it = std::find(vec.begin(), vec.end(), element_to_find);
 
     // front and back. There is no push front or push back in the vectors.
