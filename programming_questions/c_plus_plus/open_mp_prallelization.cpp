@@ -21,7 +21,7 @@ void parallel_allowed() {
     }
 }
 
-void parallel_not_allowed(){
+void parallel_not_allowed() {
     /*
     There is a subtle difference between above and below program.
     variable "j" is private in above program. so each thread created j is private and posses consistent value
@@ -32,7 +32,7 @@ void parallel_not_allowed(){
     int size  = 20;
     int x[size];
     int j;      // DON'T DO THIS
-    #pragma openmp parallel private for
+    #pragma omp parallel private for
     for (int i=0;i<size; i++){
         x[i] = i;
         for (j=0; j<10000000; j++){

@@ -1,5 +1,3 @@
-
-
 #include<iostream>
 #include<string>
 #include<vector>
@@ -7,7 +5,7 @@
 using namespace std;
 
 template <typename T>
-class Box{
+class Box {
     public:
         vector<T> arr;
 

@@ -22,18 +22,19 @@ int main() {
     dynamic_cast
     
     class Base {
-        virtual void dummy() {} 
+        virtual void dummy() {}
     };
     class Derived : public Base {
         int a;
     };
+
     Base* base = new Derived;
     Derived* derived = dynamic_cast<Derived*>(base);
+
     */
 
     const int* p = &x;
     int* q = const_cast<int*>(p); // Removing constness
-
 
     int* r = &x;
     char* s = reinterpret_cast<char*>(r); // Unrelated type conversion

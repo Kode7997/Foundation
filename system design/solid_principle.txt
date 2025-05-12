@@ -10,8 +10,3 @@ I - Interface Segregation Principle (ISP):
             Classes should not be forced to depend on methods they do not use.
 D - Dependency Inversion Principle (DIP): 
             High-level modules should not depend on low-level modules; both should depend on abstractions.
-
-
-
-
-

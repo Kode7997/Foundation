@@ -17,7 +17,7 @@ class Number {
       cout<<"number constructor called\n";
     }
 
-    Number(const Number& otherNumber) {
+    Number(const Number& otherNumber) { // if & is not used, it calls the constructors recursively
       number = otherNumber.number;
     }
 

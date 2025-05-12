@@ -13,7 +13,6 @@ this is how data is protected
 #define SIZE 10
 
 struct Entry {
-
     char *key;
     char *value;
     struct Entry *next;
@@ -63,7 +62,7 @@ struct HashMap* create_hashtable() {
     return map;
 }
 
-void insert(struct HashMap *map, char *key, char *value){
+void insert(struct HashMap *map, char *key, char *value) {
 
 
 
@@ -150,7 +149,7 @@ void delete(struct HashMap *map, char *key){
     return;
 }
 
-char* read(struct HashMap *map, char *key){         // this allows the multiple users to read while there is no write.
+char* read(struct HashMap *map, char *key) {         // this allows the multiple users to read while there is no write.
     pthread_mutex_lock(&map->reader_lock);          // lock the "map->reader++" and unlock
     map->readers++;
 

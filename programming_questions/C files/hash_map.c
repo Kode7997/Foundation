@@ -16,7 +16,7 @@
 
 #define SIZE 10
 
-struct Node{
+struct Node {
     char *key;
     char *value;
     struct Node *next;
@@ -27,7 +27,7 @@ struct HashMap{
     struct Node **bucket;
 };
 
-struct HashMap* create_hashmap(int capacity){
+struct HashMap* create_hashmap(int capacity) {
 
     if(capacity == 0) return NULL;
 

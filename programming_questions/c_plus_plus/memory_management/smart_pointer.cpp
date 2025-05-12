@@ -14,7 +14,7 @@ Cyclic References:
 In a cyclic dependency, two objects hold shared_ptr references to each other. This creates a strong ownership loop, 
 where neither object's reference count can reach zero because each object's **reference count depends on the other**.
 
-3. weak_ptr<class_type> 
+3. weak_ptr<class_type>
 */
 
 #include<iostream>
@@ -70,6 +70,7 @@ class MyClass{
 
 
 // weak pointer
+// ** concept of reference count in case of cleaning of object.**
 // #include <iostream>
 // #include <memory>
 

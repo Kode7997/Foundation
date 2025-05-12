@@ -118,6 +118,7 @@ void moveToHead(struct CACHE *cache, struct dllNode *node) {
     if (cache->head) {
         cache->head->prev = node;
     }
+
     cache->head = node;
     if (!cache->tail) {
         cache->tail = node;
@@ -156,7 +157,7 @@ int main() {
 
     // Clean up allocated memory
     // Note: You should implement a proper function to free the entire cache
-
+    
     return 0;
 }
 

@@ -52,9 +52,9 @@ string clean_string(string str1) {
     string cleaned_string;
     
     for(int i=0;i<str1.length();i++) {
-        if(isAlphaNum(str1[i])){
+        if(isAlphaNum(str1[i])) {
             cleaned_string += str1[i];
-        }else if(str1[i] == ' '){
+        }else if(str1[i] == ' ') {
             cleaned_string += ' ';
         }
     }

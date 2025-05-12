@@ -12,7 +12,7 @@ shell has:
  - terminate
 */
 
-char* read_input_line(){
+char* read_input_line() {
 
     int c;
     int position;
@@ -88,7 +88,7 @@ char** get_tokens_from_line(char *line){
 
         if (position >= bufsize){
             bufsize += TOK_BUFFER;
-            tokens = realloc(tokens, (bufsize * sizeof(char *));
+            tokens = realloc(tokens, (bufsize * sizeof(char *)));
             if(!tokens){
                 perror("memory not allocated\n");
                 exit(EXIT_FAILURE);

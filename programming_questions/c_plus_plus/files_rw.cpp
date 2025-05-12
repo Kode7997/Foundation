@@ -19,15 +19,15 @@ void anotherExample(){
         // Seeking to the beginning to read the file contents
         file.seekg(0, ios::beg);
         
-        string line;
-        while (getline(file, line)) {
-            cout << line << '\n';
-        }
-        
-        file.close();
     } else {
         cout << "Unable to open file.";
     }
+
+    string line;
+    while (getline(file, line)) {
+        cout << line << '\n';
+    }
+    file.close();
 
 }
 

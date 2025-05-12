@@ -16,7 +16,7 @@ class Base {
             num1 = num;
         }
 
-        virtual void pure_virtual_func()=0; // this make the class abstract.
+        virtual void pure_virtual_func()=0; // this make the class abstract. forcing the derived class to implement the method
 
         void display() {
             std::cout<<"num1: "<<num1<<std::endl;

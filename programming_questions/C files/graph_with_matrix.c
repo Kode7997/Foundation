@@ -12,9 +12,9 @@ int** create_matrix(int v){
     return matrix;
 }
 
-void display(int** matrix){
+void display(int** matrix) {
     
-    for(int i =0;i<5;i++){
+    for(int i =0;i<5;i++) {
         for(int j=0;j<5;j++){
             printf("%d ",matrix[i][j]);
         }
@@ -22,13 +22,13 @@ void display(int** matrix){
     }
 }
 
-void addEdge(int **graph, int src, int dest){
+void addEdge(int **graph, int src, int dest) {
     graph[src][dest] = 1;
     graph[dest][src] = 1;
     return;
 }
 
-void DFS(int **graph, int v, int *visited, int *path, int *pathIndex){
+void DFS(int **graph, int v, int *visited, int *path, int *pathIndex) {
 
     visited[v] = 1;
     path[(*pathIndex)++] = v;

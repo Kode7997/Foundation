@@ -17,6 +17,7 @@ void reader() {
 }
 
 int main() {
+    
     std::thread t1(writer);
     std::thread t2(reader);
     std::thread t3(reader);
