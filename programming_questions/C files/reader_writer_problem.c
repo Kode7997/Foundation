@@ -4,6 +4,7 @@ To handle collision = linkedlist
 
 insert()
 */
+
 #include<stdlib.h>
 #include<string.h>
 #include<stdio.h>
@@ -61,8 +62,6 @@ struct HashMap* create_hashtable() {
 }
 
 void insert(struct HashMap *map, char *key, char *value){
-
-
 
     pthread_mutex_lock(&map->data_lock);
 

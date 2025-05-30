@@ -22,7 +22,7 @@ class Child : public Parent {
         void display1();
 };
 
-void Child::display1(){
+void Child::display1() {
     cout<<" display1 defined outside"<<endl;
 }
 

@@ -18,16 +18,17 @@ void server(){
         printf("socket create failed\n")
     }
 
+    address.sin_family = AF_INET; // ipv4 address
+    address.sin_addr.s_addr = INADDR_ANY // any address
+    address.sin_port = htons(PORT)    // convert from short interger to host byte order
+
     //socket is IP and Port. so now attach ip and port to the socket
     // bind socket fd to the ipv4adress and port
     if((bind(server_fd, (struct sockaddr *)&address), sizeof(address)) < 0){
         printf("bind failed");
     }
 
-    address.sin_family = AF_INET; // ipv4 address
-    address.sin_addr.s_addr = INADDR_ANY // any address
-    address.sin_port = htons(PORT)    // convert from short interger to host byte order
-
+    
     // after bind, listen to the incomming req
     if(listen(server_fd, 3)<0) {
         printf("failed to listen\n"); //passivlt listen to the port

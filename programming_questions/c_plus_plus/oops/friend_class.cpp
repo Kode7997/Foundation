@@ -8,7 +8,7 @@ class Base{
         void prv_method(){
             std::cout<<"Base private method\n";
         }
-        public:
+    public:
             Base(int num): num1(num){}
         
         
@@ -18,14 +18,14 @@ class Base{
 
 };
 
-void display(const Base& b){
+void display(const Base& b) {
     cout<<"friend function"<<endl;
 }
 /*
     - Violates the inheritance properties
     - Tightly coupled
 */
-class Derived{
+class Derived {
 
     public:
 
@@ -37,7 +37,7 @@ class Derived{
         }
 };
 
-int main(){
+int main() {
 
     Base b(10);
     Derived d;

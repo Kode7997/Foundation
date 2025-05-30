@@ -22,7 +22,7 @@ void flip_char_in_string(char s[]){
 #define DELIMITER " \t"
 #define TOKENS 6
 
-void count_occurence_of_word(char *s1, char *word){
+void count_occurence_of_word(char *s1, char *word) {
 
     char **words = (char **)malloc( TOKENS * sizeof(char *));
     int buff_size = TOKENS;

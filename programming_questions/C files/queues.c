@@ -3,7 +3,7 @@
 #include<stdlib.h>
 
 
-struct Q{
+struct Q {
     int left;
     int right;
     int *arr;

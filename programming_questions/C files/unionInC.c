@@ -13,6 +13,11 @@ union item
     char ch;
 };
 
+union uni{
+    float i;
+    int x;
+};
+
 int main( )
 {
     union item it;
@@ -20,12 +25,21 @@ int main( )
     it.y = 20.2;
     it.ch = 'a';
     
+
     printf("%d\n", it.x);
     printf("%f\n", it.y);
     printf("%c\n", it.ch);
 
     //access more than one item in union is not allowed
-    //printf("x: %d, y: %f\n", it.x, it.y);
+    printf("x: %d, y: %f c:%c\n", it.x, it.y, it.ch);
     
+    // concept of floating point number
+    union uni u;
+    u.i = 1.0;
+    printf("i: %f x: %d\n",u.i, u.x);
+    u.x += 1 << 23;
+    printf("i: %f x: %d\n",u.i, u.x);
+    
+
     return 0;
 }

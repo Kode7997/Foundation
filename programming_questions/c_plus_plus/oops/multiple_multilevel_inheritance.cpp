@@ -24,7 +24,7 @@ class Base {
 };
 
 
-class DerivedA : virtual public Base {
+class DerivedA : virtual public Base { // virtual inheritance
     public:
     DerivedA(){
         
@@ -35,7 +35,7 @@ class DerivedA : virtual public Base {
     }
 };
 
-class DerivedB : virtual public Base {
+class DerivedB : virtual public Base { // virtual inheritance
     public:
     DerivedB(){
 
@@ -51,15 +51,15 @@ class MyClass: public DerivedA, public DerivedB{
     MyClass(){
 
     }
-    void print() {
-        std::cout<<"derived MyClass"<<std::endl;
-    }
+    // void print() {
+    //     std::cout<<"derived MyClass"<<std::endl;
+    // }
     
 };
 
 int main(){
 
     MyClass mc;
-    mc.print();
+    mc.Derived.print();
 
 }

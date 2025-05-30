@@ -18,8 +18,8 @@ class Number {
         cout<<"number mem is: "<<number<<endl;
     }
 
-    Number( Number& otherNumber) {
-      *number = *(otherNumber.number);
+    Number(const Number& otherNumber) {
+      *number = *(otherNumber.number); // shallow copy
     }
 
     int get() {

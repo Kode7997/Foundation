@@ -73,7 +73,7 @@ void mathFunc(){
 }
 
 
-void loopsInCpp(){
+void loopsInCpp() {
     int i=0;
     for(; ; i++){
         cout << i << endl;

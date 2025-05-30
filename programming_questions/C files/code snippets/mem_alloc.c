@@ -37,9 +37,6 @@ int main(){
     size_t size = sizeof(union header);
     printf("%zu\n", size);
     
-
-
-    
     // unsigned int x=6;
     // unsigned int p = (unsigned int)&x;
 

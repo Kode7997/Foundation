@@ -253,7 +253,10 @@ int main() {
     // volatile - tell compiler to not to optimise the data in this var
     // extern - tell compiler that definition of this variable is other file
 
-
+    unsigned char x = 0xFF; // because range is 0-255
+    char a = 0x80; // overflow because range is -128 to 127
+    printf("val %d\n",x); // 255
+    printf("val %d\n",a); // -128 overflow. value gets wrapped because not within range
 
     printf("size: %Lf\n",size);
     int arr[2]; // this is static allocation of memory, therefore memory is allocated in Stack

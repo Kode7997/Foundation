@@ -184,6 +184,7 @@ void dequeue_func(){
 
 
 #include <set>
+#include <unordered_set>
 void set_func(){
     /*
     Are sorted automatically in ascending order.
@@ -192,7 +193,9 @@ void set_func(){
     Cannot be accessed by index numbers, because the order is based on sorting and not indexing.
     */
 
-    set<int> s = {6,5,3,2,1,0};
+    set<int> s = {6,5,3,2,1,0}; // sorted set
+    unordered_set<int> us = {24,2,134,1}; // unordered-set
+
     s.insert(100);
 
     for (int i : s) {
@@ -203,7 +206,7 @@ void set_func(){
     for (int i : s){
         cout << i << " ";
     }
-
+    s.
     cout << s.empty() << endl;
     return;
 

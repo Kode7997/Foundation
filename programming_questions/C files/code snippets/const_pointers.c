@@ -17,11 +17,11 @@ int main(){
     // *constant_pointer = 'x';
     // printf("constant pointer: %c\n",*constant_pointer);
 
-    // constant to a pointer - cannot change the reference value it is pointing to. It's reference can be changed to another var reference.
+    // pointer to a constant - cannot change the reference value it is pointing to. It's reference can be changed to another var reference.
     char b = 'b';
     char const *constant_to_pointer = &b; // pointer cannot change the value it is pointing to but pointer can be used to reference to another memory 
     printf("constant to pointer: %c\n", *constant_to_pointer);
-    // // *constant_to_pointer = 'y'; // error bcz its constant to a pointer, where it cannot change the value of the reference it is pointing to.
+    // // *constant_to_pointer = 'y'; // error bcz its pointer to a constant, where it cannot change the value of the reference it is pointing to.
 
     // char c = 'c';
     // constant_to_pointer = &c;

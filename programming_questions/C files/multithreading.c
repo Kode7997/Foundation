@@ -22,7 +22,6 @@ void* print_msg(void* info) {
     printf("msg: %s additional info: %s\n", m->s1, m->additional_msg);
     counter++;
     printf("counter %d\n", counter);
-
     pthread_mutex_unlock(&mutex); //unlock
 
     return NULL;

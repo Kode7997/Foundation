@@ -20,9 +20,10 @@ struct Array {
 
 
 struct BufferT {
-  int buffer[ BUFFER_LEN ];
+ 
   int c;
   int index; //why last ele in struct, value is 1?
+  int buffer[BUFFER_LEN];
 };
 
 void preprocessors_check(){
@@ -31,17 +32,17 @@ void preprocessors_check(){
   int *buffer = bufferObj.buffer;
   int *index = &bufferObj.index;
   int *c = &bufferObj.c;
-  printf("index before loop: %d\t %x\t c:%d\n", *index, &buffer[BUFFER_LEN], *c);
+  printf("index before loop: %x\t %x\t c:%d\n", *index, &buffer[BUFFER_LEN], *c);
   
   int d =0;
   for ( *index = 0; *index <= BUFFER_LEN; *index = *index + 1 ) { // here when buffer is full, access the buffer[buffer_len] and over writes the memory. that is why index is set to 1 again
     printf("index: %d\t %x\n",*index, &buffer[*index]); 
     buffer[ *index ] = 0;
 
-    if (d == 10){
-        break;
-    }
-    d += 1;
+    // if (d == 10){
+    //     break;
+    // }
+    // d += 1;
 
   }
   printf( "Buffer initialized to %d\n", buffer[0] );

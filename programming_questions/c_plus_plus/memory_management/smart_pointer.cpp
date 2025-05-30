@@ -92,13 +92,32 @@ class MyClass{
 //     return 0;
 // }
 
+// Example for shared ptr, why weak ptr is needed when obj is shared with multiple members.
+
+class TeamMember {
+public:
+    std::weak_ptr<TeamMember> partner;  // ✅ Use weak_ptr to break cyclic dependency
+    TeamMember() { std::cout << "TeamMember Created\n"; }
+    ~TeamMember() { std::cout << "TeamMember Destroyed\n"; }
+};
+
+int main() {
+    std::shared_ptr<TeamMember> alice = std::make_shared<TeamMember>();
+    std::shared_ptr<TeamMember> bob = std::make_shared<TeamMember>();
+
+    alice->partner = bob;  // Weak reference
+    bob->partner = alice;  // Weak reference
+
+    return 0;  // Objects are deleted properly, avoiding memory leaks.
+}
+
+
 
 int main(){
 
     int a = 10;
 
-    unique_ptr<MyClass> ptr = make_unique<MyClass>(40); // iternally calls (new MyClass). so whenever there is exception, memory
-                                                        // is cleaned properly without leaks.
+    unique_ptr<MyClass> ptr = make_unique<MyClass>(40); // iternally calls (new MyClass). so whenever there is exception, memory is cleaned properly without leaks.
     ptr->display();
 
 

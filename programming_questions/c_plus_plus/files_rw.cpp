@@ -7,7 +7,7 @@ using namespace std;
 // istream => to read file
 
 
-void anotherExample(){
+void anotherExample() {
     
     // Open the file in read/write mode (modifying it as "append" mode)
     fstream file("example.txt", ios::in | ios::out | ios::app);
@@ -27,13 +27,14 @@ void anotherExample(){
     while (getline(file, line)) {
         cout << line << '\n';
     }
+
     file.close();
 
 }
 
 int main(){
 
-    fstream myFile("random_file.txt");
+    fstream myFile("random_file.txt", std::ios::out); // openmode: out - write
 
     myFile << "add text to the random file \n add another line to the text file";
 
