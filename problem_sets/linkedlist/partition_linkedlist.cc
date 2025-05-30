@@ -80,7 +80,7 @@ void partition(Node* head, int pVal){
     // display(&gr);
 
     
-    // merge
+    // merge - assuming lesser list always present.
     ls.merge(&eq);
     ls.merge(&gr);
 
@@ -104,7 +104,11 @@ int main() {
     
     Node* head = &n2;
     Node* tmp = head;
-    
+
+    int pVal; //partition val
+    cout<<"Enter partition value"<<endl; // assuming value >0
+    cin>>pVal;
+
     // display linkedlist before partition
     cout<<"Input: "<<endl;
     while(tmp != nullptr) {
@@ -114,7 +118,6 @@ int main() {
     cout<<endl;
 
     // partition linkedlist
-    int pVal = 4; // partition value
     partition(head, pVal);
 
 }
