@@ -34,7 +34,7 @@ vector<string> splitBySpace(string& str) {
 }
 void stringOperations() {
 
-    string fName = "keshav";
+    string fName = "jonathan";
     string lName = "_n";
     string fullName = fName + lName;            //concate strings
     
@@ -55,7 +55,7 @@ void stringOperations() {
     string name1 = "hello"; // regular string
 
     //extraction operator
-    string naam = "keshav is a bad boy";
+    string naam = "jonathan has citizenship";
     vector<string> words = splitBySpace(naam);
     cout << "string stream\n";
     for(int i=0;i<words.size();i++){
@@ -101,7 +101,7 @@ void vectorAndArray() {
 }
 
 
-void func_parameters(int &a, char c, string name = "keshav") { // here we reference the variable a
+void func_parameters(int &a, char c, string name = "jonathan") { // here we reference the variable a
     // default value should be end when clubbed with the other regular variables
     cout << "func default parameters: " << name << endl;
     a = 20;
