@@ -108,7 +108,7 @@ void insert(struct HashMap *map, char *key, char *value) {
 
 
 
-void delete(struct HashMap *map, char *key){
+void delete(struct HashMap *map, char *key) {
 
 
     pthread_mutex_lock(&map->data_lock);

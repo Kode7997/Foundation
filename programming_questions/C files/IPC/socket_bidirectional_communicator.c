@@ -15,12 +15,12 @@ void server(){
     //create socket fd // SOCK_DGRAM - use UDP else TCP for STREAM
     server_fd = socket(AF_INET, SOCK_STREAM, 0); 
     if (server_fd == 0) {
-        printf("socket create failed\n")
+        printf("socket create failed\n");
     }
 
     address.sin_family = AF_INET; // ipv4 address
-    address.sin_addr.s_addr = INADDR_ANY // any address
-    address.sin_port = htons(PORT)    // convert from short interger to host byte order
+    address.sin_addr.s_addr = INADDR_ANY; // any address
+    address.sin_port = htons(PORT);    // convert from short interger to host byte order
 
     //socket is IP and Port. so now attach ip and port to the socket
     // bind socket fd to the ipv4adress and port

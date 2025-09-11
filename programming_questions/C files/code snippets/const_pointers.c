@@ -4,7 +4,7 @@
 int main(){
 
     char *s = "this is literal";    // pointer pointing to literal, we dont know where it is stored in the memory
-     printf("index accessing of *s: %c\n",s[2]); // take note of %c here
+    printf("index accessing of *s: %c\n",s[2]); // take note of %c here
     // printf("string *s: %s\n", *s); // segmentation fault, why? *s is a pointer to the string but not exactly the string
     // printf("string *s: %s\n", s); // this would print whole string in C
     // char const *s1 = "this is another literal\n";

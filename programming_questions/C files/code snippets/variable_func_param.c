@@ -22,7 +22,7 @@
 
 // }
 
-void print(char *p, ...){
+void print(char *p, ...) {
 
     va_list arg;
 

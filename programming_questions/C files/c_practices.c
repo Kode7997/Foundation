@@ -20,10 +20,9 @@ struct Array {
 
 
 struct BufferT {
- 
+  int buffer[BUFFER_LEN];
   int c;
   int index; //why last ele in struct, value is 1?
-  int buffer[BUFFER_LEN];
 };
 
 void preprocessors_check(){

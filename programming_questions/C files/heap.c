@@ -20,8 +20,8 @@ struct heap {
     int left;
 };
 
-struct heap* create_heap(int size){
-    struct heap* hp = (struct heap*)malloc(sizeof(struct heap));
+struct heap* create_heap(int size) {
+    struct heap* hp = (struct heap *)malloc(sizeof(struct heap));
     hp->arr = (int *)malloc(size * sizeof(int));
     hp->size = size;
     hp->left = 0;
@@ -29,7 +29,7 @@ struct heap* create_heap(int size){
     return hp;
 }
 
-void heapify_up(struct heap* hp, int i){
+void heapify_up(struct heap* hp, int i) {
 
     while (i != 0 && (hp->arr[(i-1)/2]) > (hp->arr[i]))
     {
@@ -56,7 +56,7 @@ void heapify_down(struct heap* hp, int i){
         smallest = right;
     }
 
-    if (smallest != i){
+    if (smallest != i) {
         int temp = hp->arr[i];
         hp->arr[i] = hp->arr[smallest];
         hp->arr[smallest] = temp;
@@ -65,7 +65,7 @@ void heapify_down(struct heap* hp, int i){
 }
 
 
-void delete_heap(struct heap *hp){
+void delete_heap(struct heap *hp) {
 
     if (hp->left != 0){
         int last_ele = hp->arr[hp->left-1];

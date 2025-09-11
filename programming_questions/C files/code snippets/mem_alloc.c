@@ -29,7 +29,7 @@ unsigned int get_data(unsigned int p){
 }
 
 void clean_pointer(int *p){
-    *p &= ~3;
+    *p &= ~3;                   // encrypt pointer
 }
 
 int main(){

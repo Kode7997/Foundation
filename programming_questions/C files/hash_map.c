@@ -22,7 +22,7 @@ struct Node {
     struct Node *next;
 };
 
-struct HashMap{
+struct HashMap {
     int capacity;
     struct Node **bucket;
 };

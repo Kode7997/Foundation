@@ -5,20 +5,17 @@
 
 void bitwise_operators(){
 
-
     /*
     convert 32bit to 64bit int
-
     */
 
     int32_t val = 0x12345678;
     int64_t val2 = (int64_t)val;
-    //  int64_t val2 = 0;
-    // for(int i=1;i<=64;i++){
+    // int64_t val2 = 0;
+    // for(int i=1;i<=64;i++) {
     //     val2 = val2 << 1;
     //     val2 = val2 | (val & 1);
     //     val = val >> 1;
-
     // }
     printf("64bit: 0x%llx type: %zu\n",val2, sizeof(val2));
 }
