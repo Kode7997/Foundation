@@ -1,82 +1,88 @@
-#include<iostream>
+#include <iostream>
 #include <boost/asio.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <sstream>
 
-using namespace std;
+using boost::asio::ip::tcp;
+using namespace boost::property_tree;
 
-
-namespace asio = boost::asio
-
-int add(int num1, int num2){
-    return num1 + num2;
-}
-
-int multiply(int num1, int num2){
-    return num1*num2;
-}
-
-string process_request(const string& req){
-
+// Function to process XML and return response XML
+std::string process_request(const std::string& xml_input) {
+    std::stringstream ss(xml_input);
     ptree pt;
-    istringstream request_stream(request);
-    read_xml(request_stream, pt);
 
-    std::string operation = pt.get<std::string>("request.operation");
-    int num1 = pt.get<int>("request.data.num1");
-    int num2 = pt.get<int>("request.data.num2");
+    try {
+        read_xml(ss, pt);
 
-    int result = 0;
-    if (operation == "add") {
-        result = add(num1, num2)
-    } else if (operation == "multiply") {
-        result = mul(num1, num2);
-    } else {
-        result = -1;  // Invalid operation
+        std::string operation = pt.get<std::string>("request.operation");
+        int op1 = pt.get<int>("request.operand1");
+        int op2 = pt.get<int>("request.operand2");
+
+        int result = 0;
+        if (operation == "add") {
+            result = op1 + op2;
+        } else if (operation == "multiply") {
+            result = op1 * op2;
+        } else {
+            return "<response><error>Invalid operation</error></response>";
+        }
+
+        // Create response
+        ptree response_pt;
+        response_pt.put("response.result", result);
+
+        std::ostringstream oss;
+        write_xml(oss, response_pt);
+        return oss.str();
+    } catch (std::exception& e) {
+        return "<response><error>Parsing error</error></response>";
     }
-
-    ptree response
-    response.put("response.status", result == -1 ? "failure" : "success");
-    response.put("response.result", result);
-    response.put("response.num1", num1);
-    response.put("response.num2", num2);
-
-    ostringstream response_stream;
-    write_xml(response_stream, response);
-    return response_stream.str();
 }
 
+// Start a basic TCP server
+void start_server(short port) {
+    try {
+        boost::asio::io_context io_context;
+        tcp::acceptor acceptor(io_context, tcp::endpoint(tcp::v4(), port));
 
+        std::cout << "Server running on port " << port << "...\n";
 
-int main(){
+        while (true) {
+            tcp::socket socket(io_context);
+            acceptor.accept(socket);
 
-    asio::io_context ioCntxt;
+            boost::asio::streambuf buffer;
+            boost::system::error_code error;
 
-    //setup tcp server
-    asio::ip::tcp::acceptor acceptor(ioContxt, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), 8080));
-    
-    cout<<"server configuration..."<<endl;
-    cout<<"server started listening on port 8080..."<<endl;
+            boost::asio::read_until(socket, buffer, "</request>", error);
 
-    while(true){
-        asio::ip::tcp::socket(ioContxt);
-        acceptor.accept(socket);
+            if (error && error != boost::asio::error::eof) {
+                std::cerr << "Receive failed: " << error.message() << "\n";
+                continue;
+            }
 
-        boost::asio::streambuf req_buff;
-        asio::read_until(socket, req_buff,"\n");
-        
-        istream request_stream(&request_buffer);
-        string request((istreambuf_iterator<char>(request_stream)), 
-                            istreambuf_iterator<char>());
+            std::istream is(&buffer);
+            std::string request_xml((std::istreambuf_iterator<char>(is)), {});
 
-        cout << "Received request: " << request << std::endl;
+            std::cout << "Received:\n" << request_xml << "\n";
 
-        // Process the request and generate the response
-        string response = process_request(request);
+            std::string response_xml = process_request(request_xml);
 
-        // Send the response back to the client
-        asio::write(socket, asio::buffer(response));
-        
-        socket.close();
+            boost::asio::write(socket, boost::asio::buffer(response_xml), error);
+
+            if (error) {
+                std::cerr << "Send failed: " << error.message() << "\n";
+            } else {
+                std::cout << "Response sent.\n";
+            }
+        }
+    } catch (std::exception& e) {
+        std::cerr << "Server exception: " << e.what() << "\n";
     }
+}
 
+int main() {
+    start_server(12345); // You can change the port if needed
     return 0;
 }
