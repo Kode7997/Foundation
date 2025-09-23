@@ -5,7 +5,7 @@
 #include <fstream>
 
 #define SERVER_IP "127.0.0.1"
-#define SERVER_PORT "8080"
+#define SERVER_PORT "12345"
 
 namespace asio = boost::asio;
 
@@ -35,7 +35,7 @@ void send_request_to_server(const std::string& request) {
 
     // Receive response
     boost::asio::streambuf response_buffer;
-    asio::read_until(socket, response_buffer, "\n");
+    asio::read_until(socket, response_buffer, "</response>");
 
     std::istream response_stream(&response_buffer);
     std::string response((std::istreambuf_iterator<char>(response_stream)), std::istreambuf_iterator<char>());
