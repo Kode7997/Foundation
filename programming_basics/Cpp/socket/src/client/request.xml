@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request>
+    <operation>add</operation>
+    <data>
+        <num1>8</num1>
+        <num2>3</num2>
+    </data>
+</request>
