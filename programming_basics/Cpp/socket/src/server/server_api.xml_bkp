@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api>
+    <operation name="add">
+        <description>Adds two numbers</description>
+        <input>
+            <param name="num1" type="int"/>
+            <param name="num2" type="int"/>
+        </input>
+        <output>
+            <param name="result" type="int"/>
+        </output>
+    </operation>
+
+    <operation name="multiply">
+        <description>Multiplies two numbers</description>
+        <input>
+            <param name="num1" type="int"/>
+            <param name="num2" type="int"/>
+        </input>
+        <output>
+            <param name="result" type="int"/>
+        </output>
+    </operation>
+</api>

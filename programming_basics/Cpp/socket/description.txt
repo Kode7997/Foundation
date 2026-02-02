@@ -1,0 +1,4 @@
+## Sockets
+
+1. socket let apps to attach to the local network at different port, and establish the communication via file descriptor
+2. 
